@@ -40,4 +40,12 @@ export class BasesService {
                 catchError(this.handleError('getBases', []))
             );
     }
+
+    addBase(base: Base): Observable<Base> {
+        const url = apiV1Url + `base/add`;
+        return this.http.post<Base>(url, base)
+            .pipe(
+                catchError(this.handleError('addBase', base))
+            );
+    }
 }

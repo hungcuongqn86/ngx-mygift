@@ -14,7 +14,7 @@ export interface Res {
     name: string;
     size: number;
     progress: number;
-    data: {};
+    data: { url: string; };
     message: string;
     status: boolean;
 }
@@ -54,14 +54,17 @@ export class UploaderService {
 
     /** Return distinct message for sent, upload progress, & response events */
     private getEventMessage(event: HttpEvent<any>, file: File) {
-        const res: Res = {name: file.name, size: file.size, progress: 0, data: {}, message: '', status: false};
+        const res: Res = {
+            name: file.name, size: file.size, progress: 0, data: {url: ''}
+            , message: '', status: false
+        };
         switch (event.type) {
             case HttpEventType.UploadProgress:
                 res.progress = Math.round(100 * event.loaded / event.total);
                 break;
             case HttpEventType.Response:
                 res.progress = 100;
-                res.data = event.body;
+                res.data = event.body.data;
                 res.status = true;
                 break;
             default:
@@ -78,7 +81,10 @@ export class UploaderService {
      * you'll end up here in the error handler.
      */
     private handleError(file: File) {
-        const res: Res = {name: file.name, size: file.size, progress: 0, data: {}, message: '', status: false};
+        const res: Res = {
+            name: file.name, size: file.size, progress: 0, data: {url: ''}
+            , message: '', status: false
+        };
         const userMessage = `${file.name} upload failed.`;
 
         return (error: HttpErrorResponse) => {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Res, UploaderService} from '../../uploader.service';
+import {Base, BasesService} from './bases.service';
 import {backendUrl} from '../../const';
 
 @Component({
@@ -11,15 +12,33 @@ import {backendUrl} from '../../const';
 })
 
 export class DetailComponent implements OnInit {
-    fileRes: Res = {name: '', size: 0, progress: 0, data: {}, message: '', status: false};
+    fileRes: Res = {
+        name: '', size: 0, progress: 0
+        , data: {url: ''}, message: '', status: false
+    };
     backendUrl: string;
+    base: Base;
 
-    constructor(private router: Router, private uploaderService: UploaderService) {
+    constructor(private router: Router, private uploaderService: UploaderService
+        , private basesService: BasesService) {
         this.backendUrl = backendUrl;
+        this.base = {id: null, code: null, name: null, price_base: null, price: null, description: null, img: null, status: 0};
     }
 
     ngOnInit() {
 
+    }
+
+    public updateBase() {
+        if (this.base.id === null) {
+            this.basesService.addBase(this.base).subscribe(
+                res => {
+                    if (res.success) {
+                        this.router.navigate(['/bases']);
+                    }
+                }
+            );
+        }
     }
 
     public backlist() {
@@ -32,9 +51,8 @@ export class DetailComponent implements OnInit {
             this.uploaderService.upload(file).subscribe(
                 res => {
                     if (res.status) {
-                        // input.value = null;
                         this.fileRes = res;
-                        console.log(this.fileRes);
+                        this.base.img = res.data.url;
                     }
                 }
             );

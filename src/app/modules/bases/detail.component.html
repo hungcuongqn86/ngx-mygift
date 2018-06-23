@@ -46,21 +46,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="img">Ảnh phôi</label>
-                        <div class="col-md-9">
-                            <input type="text" id="img" name="img" class="form-control"
-                                   placeholder="Đường dẫn ảnh phôi">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="img">Ảnh phôi</label>
+                        <label class="col-md-3 col-form-label" for="image">Ảnh phôi</label>
                         <div class="col-md-9">
                             <input type="file" id="image" name="image" #picked
-                                   (click)="message=''"
                                    (change)="onPicked(picked)">
+                            <div *ngIf="fileRes.status">
+                                <img class="base-image" src="{{backendUrl}}{{fileRes.data.data.url}}" alt="{{fileRes.name}}">
+                            </div>
                         </div>
-                        <p *ngIf="message">{{message}}</p>
                     </div>
 
                     <div class="form-group row">

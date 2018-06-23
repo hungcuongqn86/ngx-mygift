@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UploaderService} from '../../uploader.service';
+import {Res, UploaderService} from '../../uploader.service';
+import {backendUrl} from '../../const';
 
 @Component({
     selector: 'app-base-detail',
@@ -10,9 +11,11 @@ import {UploaderService} from '../../uploader.service';
 })
 
 export class DetailComponent implements OnInit {
-    message: string;
+    fileRes: Res = {name: '', size: 0, progress: 0, data: {}, message: '', status: false};
+    backendUrl: string;
 
     constructor(private router: Router, private uploaderService: UploaderService) {
+        this.backendUrl = backendUrl;
     }
 
     ngOnInit() {
@@ -27,9 +30,12 @@ export class DetailComponent implements OnInit {
         const file = input.files[0];
         if (file) {
             this.uploaderService.upload(file).subscribe(
-                msg => {
-                    input.value = null;
-                    this.message = msg;
+                res => {
+                    if (res.status) {
+                        // input.value = null;
+                        this.fileRes = res;
+                        console.log(this.fileRes);
+                    }
                 }
             );
         }

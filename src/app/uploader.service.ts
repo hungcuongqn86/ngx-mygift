@@ -10,6 +10,15 @@ import {catchError, last, map, tap} from 'rxjs/operators';
 import {MessageService} from './message.service';
 import {apiV1Url} from './const';
 
+export interface Res {
+    name: string;
+    size: number;
+    progress: number;
+    data: {};
+    message: string;
+    status: boolean;
+}
+
 @Injectable()
 export class UploaderService {
     constructor(private http: HttpClient,
@@ -35,31 +44,30 @@ export class UploaderService {
         const req = new HttpRequest('POST', url, formData, {
             reportProgress: true
         });
-
-        // The `HttpClient.request` API produces a raw event stream
-        // which includes start (sent), progress, and response events.
         return this.http.request(req).pipe(
             map(event => this.getEventMessage(event, file)),
-            tap(message => this.showProgress(message)),
-            last(), // return last (completed) message to caller
+            tap(res => this.showProgress(res)),
+            last(),
             catchError(this.handleError(file))
         );
     }
 
     /** Return distinct message for sent, upload progress, & response events */
     private getEventMessage(event: HttpEvent<any>, file: File) {
+        const res: Res = {name: file.name, size: file.size, progress: 0, data: {}, message: '', status: false};
         switch (event.type) {
-            case HttpEventType.Sent:
-                return `Uploading file "${file.name}" of size ${file.size}.`;
             case HttpEventType.UploadProgress:
-                // Compute and show the % done:
-                const percentDone = Math.round(100 * event.loaded / event.total);
-                return `File "${file.name}" is ${percentDone}% uploaded.`;
+                res.progress = Math.round(100 * event.loaded / event.total);
+                break;
             case HttpEventType.Response:
-                return `File "${file.name}" was completely uploaded!`;
+                res.progress = 100;
+                res.data = event.body;
+                res.status = true;
+                break;
             default:
-                return '';
+                break;
         }
+        return res;
     }
 
     /**
@@ -70,6 +78,7 @@ export class UploaderService {
      * you'll end up here in the error handler.
      */
     private handleError(file: File) {
+        const res: Res = {name: file.name, size: file.size, progress: 0, data: {}, message: '', status: false};
         const userMessage = `${file.name} upload failed.`;
 
         return (error: HttpErrorResponse) => {
@@ -83,13 +92,13 @@ export class UploaderService {
             this.messenger.add(`${userMessage} ${message}`);
 
             // Let app keep running but indicate failure.
-            return of(userMessage);
+            return of(res);
         };
     }
 
-    private showProgress(message: string) {
-        if (message !== '') {
-            this.messenger.add(message);
+    private showProgress(res: Res) {
+        if (res.message !== '') {
+            this.messenger.add(res.message);
         }
     }
 }

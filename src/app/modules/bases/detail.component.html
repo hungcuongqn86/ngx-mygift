@@ -52,6 +52,16 @@
                                    placeholder="Đường dẫn ảnh phôi">
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="img">Ảnh phôi</label>
+                        <div class="col-md-9">
+                            <input type="file" id="picked" #picked
+                                   (click)="message=''"
+                                   (change)="onPicked(picked)">
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">Trạng thái</label>
                         <div class="col-md-9 col-form-label">

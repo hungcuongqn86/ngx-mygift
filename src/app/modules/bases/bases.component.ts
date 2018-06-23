@@ -2,6 +2,17 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {BasesService} from './bases.service';
 
+export interface Base {
+    id: number;
+    code: string;
+    name: string;
+    price_base: string;
+    price: string;
+    description: string;
+    img: string;
+    status: number;
+}
+
 @Component({
     selector: 'app-bases',
     templateUrl: './bases.component.html',
@@ -10,6 +21,7 @@ import {BasesService} from './bases.service';
 })
 
 export class BasesComponent implements OnInit {
+    bases: Base[];
     totalItems = 64;
     currentPage = 4;
 
@@ -18,7 +30,7 @@ export class BasesComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.searchBases();
     }
 
 
@@ -33,5 +45,10 @@ export class BasesComponent implements OnInit {
 
     public addBase() {
         this.router.navigate(['/bases/add']);
+    }
+
+    public searchBases() {
+        this.basesService.getBases(this.basesService.search)
+            .subscribe(bases => this.bases = bases);
     }
 }

@@ -5,7 +5,6 @@ import {EnsureHttpsInterceptor} from './ensure-https-interceptor';
 import {LoggingInterceptor} from './logging-interceptor';
 import {NoopInterceptor} from './noop-interceptor';
 import {TrimNameInterceptor} from './trim-name-interceptor';
-import {UploadInterceptor} from './upload-interceptor';
 
 /** Http interceptor providers in outside-in order */
 export const httpInterceptorProviders = [
@@ -14,5 +13,4 @@ export const httpInterceptorProviders = [
     {provide: HTTP_INTERCEPTORS, useClass: TrimNameInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: UploadInterceptor, multi: true},
 ];

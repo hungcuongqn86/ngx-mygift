@@ -10,7 +10,7 @@ export const navItems = [
     },
     {
         name: 'Đơn hàng',
-        url: '/theme/colors',
+        url: '/orders',
         icon: 'cui-basket-loaded'
     },
     {
@@ -19,7 +19,7 @@ export const navItems = [
     },
     {
         name: 'Khách hàng',
-        url: '/theme/colors',
+        url: '/customers',
         icon: 'cui-people'
     },
     {

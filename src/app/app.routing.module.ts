@@ -14,17 +14,31 @@ const appRoutes: Routes = [
         },
         children: [
             {
+                path: 'dashboard',
+                loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
+                data: {
+                    title: 'Bảng điều khiển'
+                }
+            }
+            , {
                 path: 'bases',
                 loadChildren: './modules/bases/bases.module#BasesModule',
                 data: {
                     title: 'Phôi'
                 }
-            },
-            {
-                path: 'dashboard',
-                loadChildren: './modules/dashboard/dashboard.module#DashboardModule',
+            }
+            , {
+                path: 'orders',
+                loadChildren: './modules/orders/orders.module#OrdersModule',
                 data: {
-                    title: 'Bảng điều khiển'
+                    title: 'Đơn hàng'
+                }
+            }
+            , {
+                path: 'customers',
+                loadChildren: './modules/customers/customers.module#CustomersModule',
+                data: {
+                    title: 'Khách hàng'
                 }
             }
         ],

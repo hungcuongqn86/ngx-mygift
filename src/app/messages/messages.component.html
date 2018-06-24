@@ -4,7 +4,6 @@
         <progressbar class="progress progress-success" [value]="loadingService.progress.progress" [max]="100"
                      type="success"><b>{{loadingService.progress.progress}}%</b></progressbar>
         <p>File: {{loadingService.progress.name}}</p>
-        <p>Dung lượng: {{loadingService.progress.size}}</p>
-        <p *ngIf="loadingService.progress.status">Hoàn thành</p>
+        <p>Size: {{loadingService.progress.size}}</p>
     </div>
 </ng-template>

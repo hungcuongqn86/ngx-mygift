@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Chi tiết phôi</strong>
+                <strong>Chi tiết khách hàng</strong>
                 <div class="card-header-actions">
                     <a class="card-header-action" href="javascript:void(0)" (click)="backlist()"
                        target="_blank"><i class="fa fa-arrow-left fa-lg"></i> Quay lại</a>
@@ -12,84 +12,77 @@
                 <form novalidate #form="ngForm" class="form-horizontal">
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="code">
-                            Mã phôi <code class="highlighter-rouge">*</code>
+                            Mã khách hàng <code class="highlighter-rouge">*</code>
                         </label>
                         <div class="col-md-9">
-                            <input [(ngModel)]="base.code" #code="ngModel" type="text" id="code" name="code"
+                            <input [(ngModel)]="customer.code" #code="ngModel" type="text" id="code" name="code"
                                    required
                                    class="form-control"
-                                   placeholder="Mã phôi">
+                                   placeholder="Mã khách hàng">
                             <div [hidden]="code.valid || code.untouched">
                                 <span *ngIf="code.errors && code.errors.required" class="badge badge-warning">
-                                    Phải nhập mã phôi!
+                                    Phải nhập mã khách hàng!
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="name">
-                            Tên phôi <code class="highlighter-rouge">*</code>
+                            Tên khách hàng <code class="highlighter-rouge">*</code>
                         </label>
                         <div class="col-md-9">
-                            <input [(ngModel)]="base.name" #name="ngModel" type="text" id="name" name="name"
+                            <input [(ngModel)]="customer.name" #name="ngModel" type="text" id="name" name="name"
                                    class="form-control"
                                    required
-                                   placeholder="Tên phôi">
+                                   placeholder="Tên khách hàng">
                             <div [hidden]="name.valid || name.untouched">
                                 <span *ngIf="name.errors && name.errors.required" class="badge badge-warning">
-                                    Phải nhập tên phôi!
+                                    Phải nhập tên khách hàng!
                                 </span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="price_base">Giá phôi (VNĐ)</label>
+                        <label class="col-md-3 col-form-label" for="phone">Số điện thoại</label>
                         <div class="col-md-9">
-                            <input [(ngModel)]="base.price_base" type="text" id="price_base" name="price_base"
+                            <input [(ngModel)]="customer.phone" #phone="ngModel" type="text" id="phone" name="phone"
                                    class="form-control"
-                                   placeholder="Giá phôi (VNĐ)">
+                                   required
+                                   placeholder="Số điện thoại">
+                            <div [hidden]="phone.valid || phone.untouched">
+                                <span *ngIf="phone.errors && phone.errors.required" class="badge badge-warning">
+                                    Phải nhập số điện thoại!
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="price">Giá thành phẩm (VNĐ)</label>
+                        <label class="col-md-3 col-form-label" for="email">Email</label>
                         <div class="col-md-9">
-                            <input [(ngModel)]="base.price" type="text" id="price" name="price" class="form-control"
-                                   placeholder="Giá thành phẩm (VNĐ)">
+                            <input [(ngModel)]="customer.email" type="text" id="email" name="email" class="form-control"
+                                   placeholder="Email">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="description">Mô tả</label>
+                        <label class="col-md-3 col-form-label" for="address">Địa chỉ</label>
                         <div class="col-md-9">
-                            <textarea [(ngModel)]="base.description" id="description" name="description" rows="5"
+                            <input [(ngModel)]="customer.address" type="text" id="address" name="address"
+                                   class="form-control"
+                                   placeholder="Địa chỉ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="note">Thông tin khác</label>
+                        <div class="col-md-9">
+                            <textarea [(ngModel)]="customer.note" id="note" name="note" rows="5"
                                       class="form-control"
-                                      placeholder="Mô tả ..."></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="image">Ảnh phôi</label>
-                        <div class="col-md-9">
-                            <input type="file" id="image" name="image" #picked
-                                   (change)="onPicked(picked)">
-                            <div *ngIf="fileRes.status">
-                                <img class="base-image" src="{{backendUrl}}{{fileRes.data.url}}" alt="{{fileRes.name}}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label">Trạng thái</label>
-                        <div class="col-md-9 col-form-label">
-                            <div class="form-check form-check-inline mr-1">
-                                <input [(ngModel)]="base.status" class="form-check-input" type="checkbox" id="status"
-                                       name="status" value="1">
-                                <label class="form-check-label" for="status">Hoạt động</label>
-                            </div>
+                                      placeholder="Thông tin khác ..."></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="card-footer text-right">
-                <button type="button" (click)="updateBase()"
+                <button type="button" (click)="updateCustomer()"
                         [disabled]="!form.form.valid"
                         class="btn btn-sm btn-primary"><i
                         class="fa fa-dot-circle-o"></i> Cập nhật

@@ -1,9 +1,1 @@
-<div *ngIf="messageService.messages.length">
-    <h3>Messages</h3>
-    <button class="clear" (click)="messageService.clear()">clear</button>
-    <br>
-    <ol>
-        <li *ngFor='let message of messageService.messages'> {{message}}</li>
-    </ol>
-</div>
-<div appMessage [message]="messageService.messages"></div>
+<div appMessage [message]="loadingService.progress" (onLoading)="showLoading()"></div>

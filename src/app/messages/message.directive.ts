@@ -1,7 +1,9 @@
-import {Directive, ElementRef, Input, OnChanges} from '@angular/core';
+import {Directive, ElementRef, Input, OnChanges, Output, EventEmitter} from '@angular/core';
 
 @Directive({selector: '[appMessage]'})
 export class MessageDirective implements OnChanges {
+    @Output()
+    public onLoading = new EventEmitter<any>();
     @Input('message')
     public message: any;
 
@@ -10,7 +12,9 @@ export class MessageDirective implements OnChanges {
 
     ngOnChanges(changes) {
         if (changes.message) {
-            console.log(this.message);
+            if (this.message.type) {
+                this.onLoading.emit();
+            }
         }
     }
 }

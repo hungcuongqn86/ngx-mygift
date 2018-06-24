@@ -12,10 +12,11 @@ import {RequestCache, RequestCacheWithMap} from './request-cache.service';
 import {AppComponent} from './app.component';
 import {AuthService} from './auth.service';
 import {HttpErrorHandler} from './http-error-handler.service';
-import {MessageService} from './message.service';
+import {LoadingService} from './loading.service';
 import {MessagesComponent} from './messages/messages.component';
 import {Error404Component} from './messages/error404.component';
 import {LoginComponent} from './auth/login.component';
+import {MessageService} from './message.service';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
@@ -96,6 +97,7 @@ import {captchar_key} from './const';
         AppGuard,
         AuthService,
         HttpErrorHandler,
+        LoadingService,
         MessageService,
         {provide: RequestCache, useClass: RequestCacheWithMap},
         httpInterceptorProviders

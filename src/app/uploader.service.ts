@@ -7,10 +7,11 @@ import {
 import {of} from 'rxjs';
 import {catchError, last, map, tap} from 'rxjs/operators';
 
-import {MessageService} from './message.service';
+import {LoadingService} from './loading.service';
 import {apiV1Url} from './const';
 
 export interface Res {
+    type: string;
     name: string;
     size: number;
     progress: number;
@@ -22,7 +23,7 @@ export interface Res {
 @Injectable()
 export class UploaderService {
     constructor(private http: HttpClient,
-                private messenger: MessageService) {
+                private loadingService: LoadingService) {
     }
 
     // If uploading multiple files, change to:
@@ -46,7 +47,11 @@ export class UploaderService {
         });
         return this.http.request(req).pipe(
             map(event => this.getEventMessage(event, file)),
-            tap(res => this.showProgress(res)),
+            tap(res => {
+                if (res.type === 'progress') {
+                    this.showProgress(res);
+                }
+            }),
             last(),
             catchError(this.handleError(file))
         );
@@ -55,14 +60,20 @@ export class UploaderService {
     /** Return distinct message for sent, upload progress, & response events */
     private getEventMessage(event: HttpEvent<any>, file: File) {
         const res: Res = {
+            type: '',
             name: file.name, size: file.size, progress: 0, data: {url: ''}
             , message: '', status: false
         };
         switch (event.type) {
+            case HttpEventType.Sent:
+                res.type = 'progress';
+                break;
             case HttpEventType.UploadProgress:
+                res.type = 'progress';
                 res.progress = Math.round(100 * event.loaded / event.total);
                 break;
             case HttpEventType.Response:
+                res.type = 'progress';
                 res.progress = 100;
                 res.data = event.body.data;
                 res.status = true;
@@ -82,6 +93,7 @@ export class UploaderService {
      */
     private handleError(file: File) {
         const res: Res = {
+            type: '',
             name: file.name, size: file.size, progress: 0, data: {url: ''}
             , message: '', status: false
         };
@@ -95,16 +107,14 @@ export class UploaderService {
                 error.error.message :
                 `server returned code ${error.status} with body "${error.error}"`;
 
-            this.messenger.add(`${userMessage} ${message}`);
+            // this.messenger.add(`${userMessage} ${message}`);
 
             // Let app keep running but indicate failure.
             return of(res);
         };
     }
 
-    private showProgress(res: Res) {
-        if (res.message !== '') {
-            this.messenger.add(res.message);
-        }
+    private showProgress(res) {
+        this.loadingService.setProgress(res);
     }
 }

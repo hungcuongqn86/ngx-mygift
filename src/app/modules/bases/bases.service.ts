@@ -56,4 +56,12 @@ export class BasesService {
                 catchError(this.handleError('addBase', base))
             );
     }
+
+    editBase(base: Base): Observable<any> {
+        const url = apiV1Url + `base/${base.id}`;
+        return this.http.put<Base>(url, base)
+            .pipe(
+                catchError(this.handleError('editBase', base))
+            );
+    }
 }

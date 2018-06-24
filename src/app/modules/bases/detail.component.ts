@@ -49,11 +49,21 @@ export class DetailComponent implements OnInit {
         if (this.base.id === null) {
             this.basesService.addBase(this.base).subscribe(
                 res => {
-                    if (res.success) {
-                        this.router.navigate(['/bases']);
-                    }
+                    this.updateSuccess(res);
                 }
             );
+        } else {
+            this.basesService.editBase(this.base).subscribe(
+                res => {
+                    this.updateSuccess(res);
+                }
+            );
+        }
+    }
+
+    private updateSuccess(res: any) {
+        if (res.success) {
+            this.backlist();
         }
     }
 

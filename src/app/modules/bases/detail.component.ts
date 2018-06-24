@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit {
     constructor(private router: Router, private uploaderService: UploaderService, private route: ActivatedRoute
         , private basesService: BasesService) {
         this.backendUrl = backendUrl;
-        this.base = {id: null, code: null, name: null, price_base: null, price: null, description: null, img: null, status: 0};
+        this.base = {id: null, code: null, name: null, price_base: null, price: null, description: null, img: null, status: 0, delete_f: 0};
         this.route.params.subscribe(params => {
             if (params['id']) {
                 this.base.id = params['id'];

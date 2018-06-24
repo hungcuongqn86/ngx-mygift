@@ -40,12 +40,15 @@
                         <td class="text-right">
                             <button (click)="editBase(base.id)" class="btn btn-sm btn-ghost-primary" type="button">Sửa
                             </button>
-                            <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
+                            <button (click)="openModal(template,base)" class="btn btn-sm btn-ghost-danger"
+                                    type="button">Xóa
+                            </button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage"
+                <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="basesService.search.page"
+                            (pageChanged)="pageChanged($event)"
                             class="pagination-sm pull-right" [maxSize]="6"
                             previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
                             lastText="&raquo;"></pagination>
@@ -54,3 +57,12 @@
     </div>
     <!--/.col-->
 </div>
+<ng-template #template>
+    <div class="modal-body text-center">
+        <p>Bạn có chắc chắn muốn xóa Phôi này!?</p>
+        <div class="btn-group btn-group-toggle">
+            <button type="button" class="btn btn-warning" (click)="confirm()">Yes</button>
+            <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+        </div>
+    </div>
+</ng-template>

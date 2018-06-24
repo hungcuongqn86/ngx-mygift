@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 import {BasesService} from './bases.service';
 import {BasesComponent} from './bases.component';
@@ -10,7 +11,7 @@ import {DetailComponent} from './detail.component';
 import {BasesRoutingModule} from './bases.routing.module';
 
 @NgModule({
-    imports: [CommonModule, FormsModule, BasesRoutingModule, PaginationModule.forRoot()],
+    imports: [CommonModule, FormsModule, BasesRoutingModule, PaginationModule.forRoot(), ModalModule.forRoot()],
     declarations: [
         BasesComponent,
         DetailComponent

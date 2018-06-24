@@ -16,6 +16,7 @@ export interface Base {
     description: string;
     img: string;
     status: number;
+    delete_f: number;
 }
 
 @Injectable()

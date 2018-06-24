@@ -1,6 +1,8 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, TemplateRef} from '@angular/core';
 import {Router} from '@angular/router';
 import {BasesService} from './bases.service';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 export interface Base {
     id: number;
@@ -11,6 +13,7 @@ export interface Base {
     description: string;
     img: string;
     status: number;
+    delete_f: number;
 }
 
 @Component({
@@ -21,11 +24,12 @@ export interface Base {
 })
 
 export class BasesComponent implements OnInit {
+    base: Base;
     bases: Base[];
-    totalItems = 64;
-    currentPage = 4;
+    totalItems = 0;
+    modalRef: BsModalRef;
 
-    constructor(public basesService: BasesService, private router: Router) {
+    constructor(public basesService: BasesService, private router: Router, private modalService: BsModalService) {
 
     }
 
@@ -33,14 +37,9 @@ export class BasesComponent implements OnInit {
         this.searchBases();
     }
 
-
-    setPage(pageNo: number): void {
-        this.currentPage = pageNo;
-    }
-
     pageChanged(event: any): void {
-        console.log('Page changed to: ' + event.page);
-        console.log('Number items per page: ' + event.itemsPerPage);
+        this.basesService.search.page = event.page;
+        this.searchBases();
     }
 
     public addBase() {
@@ -51,8 +50,35 @@ export class BasesComponent implements OnInit {
         this.router.navigate([`/bases/${id}`]);
     }
 
+    public deleteBase() {
+        if (this.base) {
+            this.base.delete_f = 1;
+            this.basesService.editBase(this.base)
+                .subscribe(res => {
+                    this.searchBases();
+                });
+        }
+    }
+
     public searchBases() {
         this.basesService.getBases(this.basesService.search)
-            .subscribe(bases => this.bases = bases.data);
+            .subscribe(bases => {
+                this.bases = bases.data.data;
+                this.totalItems = bases.data.total;
+            });
+    }
+
+    openModal(template: TemplateRef<any>, base) {
+        this.base = base;
+        this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    }
+
+    confirm(): void {
+        this.deleteBase();
+        this.modalRef.hide();
+    }
+
+    decline(): void {
+        this.modalRef.hide();
     }
 }

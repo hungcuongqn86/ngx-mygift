@@ -24,7 +24,9 @@ export class DetailComponent implements OnInit {
         this.backendUrl = backendUrl;
         this.base = {id: null, code: null, name: null, price_base: null, price: null, description: null, img: null, status: 0};
         this.route.params.subscribe(params => {
-            this.base.id = params['id'];
+            if (params['id']) {
+                this.base.id = params['id'];
+            }
         });
     }
 

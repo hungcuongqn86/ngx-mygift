@@ -47,8 +47,12 @@ export class BasesComponent implements OnInit {
         this.router.navigate(['/bases/add']);
     }
 
+    public editBase(id) {
+        this.router.navigate([`/bases/${id}`]);
+    }
+
     public searchBases() {
         this.basesService.getBases(this.basesService.search)
-            .subscribe(bases => this.bases = bases);
+            .subscribe(bases => this.bases = bases.data);
     }
 }

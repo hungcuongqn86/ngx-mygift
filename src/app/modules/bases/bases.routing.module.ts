@@ -16,6 +16,12 @@ const routes: Routes = [
         data: {
             title: 'Thêm phôi mới'
         }
+    },
+    {
+        path: ':id', component: DetailComponent,
+        data: {
+            title: 'Sửa phôi'
+        }
     }
 ];
 

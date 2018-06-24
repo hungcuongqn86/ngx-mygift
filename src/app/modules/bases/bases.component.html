@@ -12,7 +12,8 @@
                 <form novalidate (ngSubmit)="searchBases()" #form="ngForm">
                     <div class="form-group row">
                         <div class="col-md-10">
-                            <input [(ngModel)]="basesService.search.key" type="text" id="key" name="key" class="form-control"
+                            <input [(ngModel)]="basesService.search.key" type="text" id="key" name="key"
+                                   class="form-control"
                                    placeholder="Tìm kiếm theo MÃ, TÊN phôi">
                         </div>
                         <div class="col-md-2">
@@ -32,48 +33,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>BT.COC.001</td>
-                        <td>Cốc sứ Bát Tràng men trắng dáng vại</td>
-                        <td class="text-right">99.000</td>
+                    <tr *ngFor="let base of bases">
+                        <td>{{base.code}}</td>
+                        <td>{{base.name}}</td>
+                        <td class="text-right">{{base.price_base}}</td>
                         <td class="text-right">
-                            <button class="btn btn-sm btn-ghost-primary" type="button">Sửa</button>
-                            <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BT.COC.002</td>
-                        <td>Cốc sứ Bát Tràng men trắng dáng quả bưởi</td>
-                        <td class="text-right">99.000</td>
-                        <td class="text-right">
-                            <button class="btn btn-sm btn-ghost-primary" type="button">Sửa</button>
-                            <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BT.COC.003</td>
-                        <td>Cốc sứ Bát Tràng dáng vại</td>
-                        <td class="text-right">99.000</td>
-                        <td class="text-right">
-                            <button class="btn btn-sm btn-ghost-primary" type="button">Sửa</button>
-                            <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BT.COC.004</td>
-                        <td>Cốc sứ Bát Tràng dáng vại</td>
-                        <td class="text-right">99.000</td>
-                        <td class="text-right">
-                            <button class="btn btn-sm btn-ghost-primary" type="button">Sửa</button>
-                            <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>BT.COC.005</td>
-                        <td>Cốc sứ Bát Tràng dáng vại</td>
-                        <td class="text-right">99.000</td>
-                        <td class="text-right">
-                            <button class="btn btn-sm btn-ghost-primary" type="button">Sửa</button>
+                            <button (click)="editBase(base.id)" class="btn btn-sm btn-ghost-primary" type="button">Sửa
+                            </button>
                             <button class="btn btn-sm btn-ghost-danger" type="button">Xóa</button>
                         </td>
                     </tr>

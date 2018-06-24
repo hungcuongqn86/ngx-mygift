@@ -29,19 +29,27 @@ export class BasesService {
         return BasesService.instance = BasesService.instance || this;
     }
 
-    getBases(search): Observable<Base[]> {
+    getBases(search): Observable<any> {
         const url = apiV1Url + `bases`;
         let params = new HttpParams();
         Object.keys(search).map((key) => {
             params = params.append(key, search[key]);
         });
-        return this.http.get<Base[]>(url, {params: params})
+        return this.http.get<any>(url, {params: params})
             .pipe(
                 catchError(this.handleError('getBases', []))
             );
     }
 
-    addBase(base: Base): Observable<Base> {
+    getBase(id): Observable<any> {
+        const url = apiV1Url + `base/${id}`;
+        return this.http.get<any>(url)
+            .pipe(
+                catchError(this.handleError('getBase', []))
+            );
+    }
+
+    addBase(base: Base): Observable<any> {
         const url = apiV1Url + `base/add`;
         return this.http.post<Base>(url, base)
             .pipe(

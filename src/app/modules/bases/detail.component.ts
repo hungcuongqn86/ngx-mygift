@@ -19,14 +19,30 @@ export class DetailComponent implements OnInit {
     backendUrl: string;
     base: Base;
 
-    constructor(private router: Router, private uploaderService: UploaderService
+    constructor(private router: Router, private uploaderService: UploaderService, private route: ActivatedRoute
         , private basesService: BasesService) {
         this.backendUrl = backendUrl;
         this.base = {id: null, code: null, name: null, price_base: null, price: null, description: null, img: null, status: 0};
+        this.route.params.subscribe(params => {
+            this.base.id = params['id'];
+        });
     }
 
     ngOnInit() {
+        if (this.base.id !== null) {
+            this.getBase(this.base.id);
+        }
+    }
 
+    public getBase(id) {
+        this.basesService.getBase(id)
+            .subscribe(base => {
+                this.base = base.data;
+                if (base.data.img) {
+                    this.fileRes.status = true;
+                    this.fileRes.data.url = base.data.img;
+                }
+            });
     }
 
     public updateBase() {

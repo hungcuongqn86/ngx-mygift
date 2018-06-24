@@ -30,7 +30,7 @@ export class CustomersService {
     }
 
     getCustomers(search): Observable<any> {
-        const url = apiV1Url + `customer`;
+        const url = apiV1Url + `customers`;
         let params = new HttpParams();
         Object.keys(search).map((key) => {
             params = params.append(key, search[key]);

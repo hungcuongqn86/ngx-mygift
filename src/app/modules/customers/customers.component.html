@@ -38,9 +38,9 @@
                     <tr *ngFor="let cus of customers">
                         <td>{{cus.code}}</td>
                         <td>{{cus.name}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{cus.phone}}</td>
+                        <td>{{cus.email}}</td>
+                        <td>{{cus.address}}</td>
                         <td class="text-right">
                             <button (click)="editCustomer(cus.id)" class="btn btn-sm btn-ghost-primary"
                                     type="button">Sửa
@@ -64,7 +64,7 @@
 </div>
 <ng-template #template>
     <div class="modal-body text-center">
-        <p>Bạn có chắc chắn muốn xóa Phôi này!?</p>
+        <p>Bạn có chắc chắn muốn XÓA KHÁCH HÀNG này!?</p>
         <div class="btn-group btn-group-toggle">
             <button type="button" class="btn btn-warning" (click)="confirm()">Yes</button>
             <button type="button" class="btn btn-primary" (click)="decline()">No</button>

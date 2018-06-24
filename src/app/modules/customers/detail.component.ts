@@ -35,12 +35,12 @@ export class DetailComponent implements OnInit {
 
     ngOnInit() {
         if (this.customer.id !== null) {
-            this.getBase(this.customer.id);
+            this.getCustomer(this.customer.id);
         }
     }
 
-    public getBase(id) {
-        this.customersService.getBase(id)
+    public getCustomer(id) {
+        this.customersService.getCustomer(id)
             .subscribe(customer => {
                 this.customer = customer.data;
             });

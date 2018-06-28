@@ -30,5 +30,10 @@ export const navItems = [
         name: 'Phôi',
         url: '/bases',
         icon: 'icon-puzzle'
+    },
+    {
+        name: 'Mockup',
+        url: '/mockup',
+        icon: 'cui-layers'
     }
 ];

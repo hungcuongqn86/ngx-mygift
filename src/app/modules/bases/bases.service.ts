@@ -16,6 +16,16 @@ export interface Base {
     description: string;
     img: string;
     status: number;
+    cdx: number;
+    cdy: number;
+    img_height: number;
+    img_width: number;
+    height: number;
+    width: number;
+    curls: string;
+    rotate: number;
+    pulled_oblique: string;
+    colors: string;
     delete_f: number;
 }
 

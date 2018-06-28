@@ -147,6 +147,33 @@
                                    placeholder="Góc xoay">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="price_base">Độ kéo xiên</label>
+                        <div class="col-md-3">
+                            <input [(ngModel)]="base.pulled_oblique" type="text" id="pulled_oblique" name="pulled_oblique"
+                                   class="form-control"
+                                   placeholder="Độ kéo xiên">
+                        </div>
+                        <label class="col-md-3 col-form-label" for="price_base">Màu sắc</label>
+                        <div class="col-md-3">
+                            <input [(ngModel)]="base.colors" type="text" id="colors" name="colors"
+                                   class="form-control"
+                                   placeholder="Màu sắc">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label"><strong>Danh sách mockup</strong></label>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="mockup">
+                            Chọn mockup <code class="highlighter-rouge">*</code>
+                        </label>
+                        <div class="col-md-9">
+                            <input type="text" id="mockup" name="mockup"
+                                   class="form-control"
+                                   placeholder="Chọn mockup">
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="card-footer text-right">

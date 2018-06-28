@@ -70,6 +70,7 @@ export class BasesService {
 
     editBase(base: Base): Observable<any> {
         const url = apiV1Url + `base/${base.id}`;
+        console.log(base);
         return this.http.put<Base>(url, base)
             .pipe(
                 catchError(this.handleError('editBase', base))

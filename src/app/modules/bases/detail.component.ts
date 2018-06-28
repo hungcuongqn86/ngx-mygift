@@ -49,7 +49,7 @@ export class DetailComponent implements OnInit {
                 this.base = base.data;
                 if (base.data.img) {
                     this.fileRes.status = true;
-                    this.fileRes.data.url = base.data.img;
+                    this.fileRes.data.url = decodeURIComponent(base.data.img);
                 }
             });
     }

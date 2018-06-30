@@ -39,44 +39,44 @@ export const navItems = [
     {
         url: '/base',
         name: 'Cài đặt trang',
-        icon: 'cui-layers',
+        icon: 'icon-settings',
         children: [
             {
                 name: 'Trang thiết kế',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             },
             {
                 name: 'Trang thành phẩm',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             },
             {
                 name: 'Trang sản phẩm',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             }
         ]
     },
     {
         url: '/base',
         name: 'Cài đặt danh mục',
-        icon: 'cui-layers',
+        icon: 'icon-settings',
         children: [
             {
                 name: 'Danh mục loại phôi',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             },
             {
                 name: 'Danh mục nguồn gốc',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             },
             {
                 name: 'Danh mục sản phẩm',
                 url: '/product',
-                icon: 'cui-layers'
+                icon: 'icon-wrench'
             }
         ]
     }

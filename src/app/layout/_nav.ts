@@ -32,8 +32,8 @@ export const navItems = [
         icon: 'icon-puzzle'
     },
     {
-        name: 'Mockup',
-        url: '/mockup',
+        name: 'Sản phẩm',
+        url: '/product',
         icon: 'cui-layers'
     }
 ];

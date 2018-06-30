@@ -1,0 +1,86 @@
+<form novalidate #form="ngForm" class="form-horizontal">
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="code">
+            Mã phôi <code class="highlighter-rouge">*</code>
+        </label>
+        <div class="col-md-9">
+            <input [(ngModel)]="base.code" #code="ngModel" type="text" id="code" name="code"
+                   required
+                   class="form-control"
+                   placeholder="Mã phôi">
+            <div [hidden]="code.valid || code.untouched">
+                                <span *ngIf="code.errors && code.errors.required" class="badge badge-warning">
+                                    Phải nhập mã phôi!
+                                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="name">
+            Tên phôi <code class="highlighter-rouge">*</code>
+        </label>
+        <div class="col-md-9">
+            <input [(ngModel)]="base.name" #name="ngModel" type="text" id="name" name="name"
+                   class="form-control"
+                   required
+                   placeholder="Tên phôi">
+            <div [hidden]="name.valid || name.untouched">
+                                <span *ngIf="name.errors && name.errors.required" class="badge badge-warning">
+                                    Phải nhập tên phôi!
+                                </span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="price_base">Giá phôi (VNĐ)</label>
+        <div class="col-md-9">
+            <input [(ngModel)]="base.price_base" type="text" id="price_base"
+                   name="price_base"
+                   class="form-control"
+                   placeholder="Giá phôi (VNĐ)">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="price">Giá thành phẩm (VNĐ)</label>
+        <div class="col-md-9">
+            <input [(ngModel)]="base.price" type="text" id="price" name="price"
+                   class="form-control"
+                   placeholder="Giá thành phẩm (VNĐ)">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="description">Mô tả</label>
+        <div class="col-md-9">
+                                        <textarea [(ngModel)]="base.description" id="description" name="description"
+                                                  rows="5"
+                                                  class="form-control"
+                                                  placeholder="Mô tả ..."></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="price_base">Màu sắc</label>
+        <div class="col-md-9">
+            <input [(ngModel)]="base.colors" type="text" id="colors" name="colors"
+                   class="form-control"
+                   placeholder="Màu sắc">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-3 col-form-label">Trạng thái</label>
+        <div class="col-md-3 col-form-label">
+            <div class="form-check form-check-inline mr-1">
+                <input [(ngModel)]="base.status" class="form-check-input" type="checkbox"
+                       id="status"
+                       name="status" value="1">
+                <label class="form-check-label" for="status">Hoạt động</label>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="text-right">
+    <button type="button" (click)="updateBase()"
+            [disabled]="!form.form.valid"
+            class="btn btn-sm btn-primary"><i
+            class="fa fa-dot-circle-o"></i> Cập nhật
+    </button>
+</div>

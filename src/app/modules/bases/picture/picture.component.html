@@ -17,14 +17,14 @@
 <div class="form-group row">
     <label class="col-md-3 col-form-label" for="img_width">Chiều rộng ảnh</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.img_width" type="number" id="img_width"
+        <input [(ngModel)]="basesService.base.img_width" type="number" id="img_width"
                name="img_width"
                class="form-control"
                placeholder="Chiều rộng ảnh">
     </div>
     <label class="col-md-3 col-form-label" for="img_height">Chiều dài ảnh</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.img_height" type="number" id="img_height"
+        <input [(ngModel)]="basesService.base.img_height" type="number" id="img_height"
                name="img_height"
                class="form-control"
                placeholder="Chiều dài ảnh">
@@ -33,13 +33,13 @@
 <div class="form-group row">
     <label class="col-md-3 col-form-label" for="cdx">Tọa độ khung in - X</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.cdx" type="number" id="cdx" name="cdx"
+        <input [(ngModel)]="basesService.base.cdx" type="number" id="cdx" name="cdx"
                class="form-control"
                placeholder="Tọa độ khung in - x">
     </div>
     <label class="col-md-3 col-form-label" for="cdy">Tọa độ khung in - Y</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.cdy" type="number" id="cdy" name="cdy"
+        <input [(ngModel)]="basesService.base.cdy" type="number" id="cdy" name="cdy"
                class="form-control"
                placeholder="Tọa độ khung in - Y">
     </div>
@@ -47,13 +47,13 @@
 <div class="form-group row">
     <label class="col-md-3 col-form-label" for="width">Chiều rộng khung in</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.width" type="number" id="width" name="width"
+        <input [(ngModel)]="basesService.base.width" type="number" id="width" name="width"
                class="form-control"
                placeholder="Chiều rộng khung in">
     </div>
     <label class="col-md-3 col-form-label" for="height">Chiều cao khung in</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.height" type="number" id="height" name="height"
+        <input [(ngModel)]="basesService.base.height" type="number" id="height" name="height"
                class="form-control"
                placeholder="Chiều cao khung in">
     </div>
@@ -61,13 +61,13 @@
 <div class="form-group row">
     <label class="col-md-3 col-form-label" for="curls">Độ cong</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.curls" type="text" id="curls" name="curls"
+        <input [(ngModel)]="basesService.base.curls" type="text" id="curls" name="curls"
                class="form-control"
                placeholder="Độ cong">
     </div>
     <label class="col-md-3 col-form-label" for="rotate">Góc xoay</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.rotate" type="number" id="rotate" name="rotate"
+        <input [(ngModel)]="basesService.base.rotate" type="number" id="rotate" name="rotate"
                class="form-control"
                placeholder="Góc xoay">
     </div>
@@ -75,7 +75,7 @@
 <div class="form-group row">
     <label class="col-md-3 col-form-label" for="pulled_oblique">Độ kéo xiên</label>
     <div class="col-md-3">
-        <input [(ngModel)]="base.pulled_oblique" type="text" id="pulled_oblique"
+        <input [(ngModel)]="basesService.base.pulled_oblique" type="text" id="pulled_oblique"
                name="pulled_oblique"
                class="form-control"
                placeholder="Độ kéo xiên">

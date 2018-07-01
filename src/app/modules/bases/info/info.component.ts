@@ -10,26 +10,4 @@ import {BasesService} from '../bases.service';
 export class InfoComponent {
     constructor(public basesService: BasesService) {
     }
-
-    public updateBase() {
-        if (this.basesService.base.id === null) {
-            this.basesService.addBase(this.basesService.base).subscribe(
-                res => {
-                    this.updateSuccess(res);
-                }
-            );
-        } else {
-            this.basesService.editBase(this.basesService.base).subscribe(
-                res => {
-                    this.updateSuccess(res);
-                }
-            );
-        }
-    }
-
-    private updateSuccess(res: any) {
-        if (res.success) {
-            // end loading
-        }
-    }
 }

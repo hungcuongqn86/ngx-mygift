@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Res, UploaderService} from '../../../uploader.service';
+import {UploaderService} from '../../../uploader.service';
 import {BasesService} from '../bases.service';
 import {backendUrl} from '../../../const';
 
@@ -23,6 +23,7 @@ export class PictureComponent {
             this.uploaderService.upload(file).subscribe(
                 res => {
                     if (res.status) {
+                        res.data.url = decodeURIComponent(res.data.url);
                         this.basesService.fileRes = res;
                         this.basesService.base.img = res.data.url;
                     }

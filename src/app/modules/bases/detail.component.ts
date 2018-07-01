@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Base, BasesService} from './bases.service';
+import {BasesService} from './bases.service';
 
 @Component({
     selector: 'app-base-detail',

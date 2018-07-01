@@ -73,6 +73,28 @@ export class BasesService {
             );
     }
 
+    updateBase() {
+        if (this.base.id === null) {
+            this.addBase(this.base).subscribe(
+                res => {
+                    this.updateSuccess(res);
+                }
+            );
+        } else {
+            this.editBase(this.base).subscribe(
+                res => {
+                    this.updateSuccess(res);
+                }
+            );
+        }
+    }
+
+    private updateSuccess(res: any) {
+        if (res.success) {
+            // end loading
+        }
+    }
+
     addBase(base: Base): Observable<any> {
         const url = apiV1Url + `base/add`;
         return this.http.post<Base>(url, base)

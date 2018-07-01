@@ -7,6 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class MockupComponent implements OnInit {
+    isCollapsed1 = false;
+    isCollapsed2 = true;
+    isCollapsed3 = true;
+
     ngOnInit() {
     }
 }

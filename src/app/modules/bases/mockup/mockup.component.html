@@ -1,13 +1,42 @@
-<div class="form-group row">
-    <label class="col-md-12 col-form-label"><strong>Danh sách mockup</strong></label>
+<div class="card">
+    <div class="card-header">
+        Mockup 1
+        <div class="card-header-actions">
+            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed1 = !isCollapsed1"
+               target="_blank"><i [ngClass]="(isCollapsed1)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+        </div>
+    </div>
+    <div class="card-body" [collapse]="isCollapsed1">
+        <p>
+            Lorem ipsum dolor sit amet.
+        </p>
+    </div>
 </div>
-<div class="form-group row">
-    <label class="col-md-3 col-form-label" for="mockup">
-        Chọn mockup <code class="highlighter-rouge">*</code>
-    </label>
-    <div class="col-md-9">
-        <input type="text" id="mockup" name="mockup"
-               class="form-control"
-               placeholder="Chọn mockup">
+<div class="card">
+    <div class="card-header">
+        Mockup 2
+        <div class="card-header-actions">
+            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed2 = !isCollapsed2"
+               target="_blank"><i [ngClass]="(isCollapsed2)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+        </div>
+    </div>
+    <div class="card-body" [collapse]="isCollapsed2">
+        <p>
+            Lorem ipsum dolor sit amet.
+        </p>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        Mockup 3
+        <div class="card-header-actions">
+            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed3 = !isCollapsed3"
+               target="_blank"><i [ngClass]="(isCollapsed3)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+        </div>
+    </div>
+    <div class="card-body" [collapse]="isCollapsed3">
+        <p>
+            Lorem ipsum dolor sit amet.
+        </p>
     </div>
 </div>

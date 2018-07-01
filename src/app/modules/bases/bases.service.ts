@@ -6,6 +6,7 @@ import {catchError} from 'rxjs/operators';
 
 import {HttpErrorHandler, HandleError} from '../../http-error-handler.service';
 import {apiV1Url} from '../../const';
+import {Res} from '../../uploader.service';
 
 export interface Base {
     id: number;
@@ -40,6 +41,11 @@ export class BasesService {
         , cdx: 0, cdy: 0, img_height: 0, img_width: 0, height: 0, width: 0, rotate: 0, curls: '', pulled_oblique: ''
         , colors: ''
         , delete_f: 0
+    };
+    public fileRes: Res = {
+        type: '',
+        name: '', size: 0, progress: 0
+        , data: {url: ''}, message: '', status: false
     };
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {

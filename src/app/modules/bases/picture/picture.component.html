@@ -3,9 +3,9 @@
     <div class="col-md-9">
         <input type="file" id="image" name="image" #picked
                (change)="onPicked(picked)">
-        <div *ngIf="fileRes.status">
-            <img class="base-image" src="{{backendUrl}}{{fileRes.data.url}}"
-                 alt="{{fileRes.name}}">
+        <div *ngIf="basesService.fileRes.status">
+            <img class="base-image" src="{{backendUrl}}{{basesService.fileRes.data.url}}"
+                 alt="{{basesService.fileRes.name}}">
         </div>
     </div>
 </div>

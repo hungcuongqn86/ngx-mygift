@@ -11,19 +11,10 @@ import {backendUrl} from '../../../const';
 })
 
 export class PictureComponent {
-    fileRes: Res = {
-        type: '',
-        name: '', size: 0, progress: 0
-        , data: {url: ''}, message: '', status: false
-    };
     backendUrl: string;
 
     constructor(private uploaderService: UploaderService, public basesService: BasesService) {
         this.backendUrl = backendUrl;
-        if (this.basesService.base.img) {
-            this.fileRes.status = true;
-            this.fileRes.data.url = decodeURIComponent(this.basesService.base.img);
-        }
     }
 
     public onPicked(input: HTMLInputElement) {
@@ -32,7 +23,7 @@ export class PictureComponent {
             this.uploaderService.upload(file).subscribe(
                 res => {
                     if (res.status) {
-                        this.fileRes = res;
+                        this.basesService.fileRes = res;
                         this.basesService.base.img = res.data.url;
                     }
                 }

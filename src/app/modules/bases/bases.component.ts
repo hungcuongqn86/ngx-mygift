@@ -31,6 +31,7 @@ export class BasesComponent implements OnInit {
     }
 
     public addBase() {
+        this.basesService.base.id = null;
         this.router.navigate(['/bases/add']);
     }
 

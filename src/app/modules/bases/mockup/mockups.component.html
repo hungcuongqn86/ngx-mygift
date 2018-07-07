@@ -1,0 +1,7 @@
+<app-base-detail-mockups-mockup *ngFor="let item of basesService.base.mockup" [mockup]="item"></app-base-detail-mockups-mockup>
+<div class="text-right">
+    <button type="button" (click)="basesService.updateBase()"
+            class="btn btn-sm btn-primary"><i
+            class="fa fa-dot-circle-o"></i> Cập nhật
+    </button>
+</div>

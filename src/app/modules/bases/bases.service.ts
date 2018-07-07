@@ -6,17 +6,13 @@ import {catchError} from 'rxjs/operators';
 
 import {HttpErrorHandler, HandleError} from '../../http-error-handler.service';
 import {apiV1Url} from '../../const';
-import {Res} from '../../uploader.service';
 
-export interface Base {
+export interface Mockup {
     id: number;
-    code: string;
-    name: string;
-    price_base: string;
-    price: string;
-    description: string;
-    img: string;
+    base_id: number;
+    index: number;
     status: number;
+    img: string;
     cdx: number;
     cdy: number;
     img_height: number;
@@ -26,7 +22,19 @@ export interface Base {
     curls: string;
     rotate: number;
     pulled_oblique: string;
+    delete_f: number;
+}
+
+export interface Base {
+    id: number;
+    code: string;
+    name: string;
+    price_base: string;
+    price: string;
+    description: string;
+    status: number;
     colors: string;
+    mockup: Array<Mockup>;
     delete_f: number;
 }
 
@@ -37,15 +45,10 @@ export class BasesService {
     public search = {key: '', page_size: 10, page: 1};
     public base: Base = {
         id: null, code: null, name: null, price_base: null, price: null
-        , description: null, img: null, status: 0
-        , cdx: 0, cdy: 0, img_height: 0, img_width: 0, height: 0, width: 0, rotate: 0, curls: '', pulled_oblique: ''
+        , description: null, status: 0
         , colors: ''
+        , mockup: null
         , delete_f: 0
-    };
-    public fileRes: Res = {
-        type: '',
-        name: '', size: 0, progress: 0
-        , data: {url: ''}, message: '', status: false
     };
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {

@@ -2,41 +2,92 @@
     <div class="card-header">
         Mockup 1
         <div class="card-header-actions">
-            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed1 = !isCollapsed1"
-               target="_blank"><i [ngClass]="(isCollapsed1)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed = !isCollapsed"
+               target="_blank"><i [ngClass]="(isCollapsed)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
         </div>
     </div>
-    <div class="card-body" [collapse]="isCollapsed1">
-        <p>
-            Lorem ipsum dolor sit amet.
-        </p>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        Mockup 2
-        <div class="card-header-actions">
-            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed2 = !isCollapsed2"
-               target="_blank"><i [ngClass]="(isCollapsed2)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+    <div class="card-body" [collapse]="isCollapsed">
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="image">Ảnh</label>
+            <div class="col-md-9">
+                <input type="file" id="image" name="image" #picked
+                       (change)="onPicked(picked)">
+                <div *ngIf="fileRes.status">
+                    <img class="base-image" src="{{backendUrl}}{{fileRes.data.url}}"
+                         alt="{{fileRes.name}}">
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="card-body" [collapse]="isCollapsed2">
-        <p>
-            Lorem ipsum dolor sit amet.
-        </p>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header">
-        Mockup 3
-        <div class="card-header-actions">
-            <a class="card-header-action" href="javascript:void(0)" (click)="isCollapsed3 = !isCollapsed3"
-               target="_blank"><i [ngClass]="(isCollapsed3)? 'fa fa-window-maximize': 'fa fa-window-minimize'"></i></a>
+        <div class="form-group row">
+            <label class="col-md-12 col-form-label"><strong>Thông số kỹ thuật</strong></label>
         </div>
-    </div>
-    <div class="card-body" [collapse]="isCollapsed3">
-        <p>
-            Lorem ipsum dolor sit amet.
-        </p>
+
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="img_width">Chiều rộng ảnh</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.img_width" type="number" id="img_width"
+                       name="img_width"
+                       class="form-control"
+                       placeholder="Chiều rộng ảnh">
+            </div>
+            <label class="col-md-3 col-form-label" for="img_height">Chiều dài ảnh</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.img_height" type="number" id="img_height"
+                       name="img_height"
+                       class="form-control"
+                       placeholder="Chiều dài ảnh">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="cdx">Tọa độ khung in - X</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.cdx" type="number" id="cdx" name="cdx"
+                       class="form-control"
+                       placeholder="Tọa độ khung in - x">
+            </div>
+            <label class="col-md-3 col-form-label" for="cdy">Tọa độ khung in - Y</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.cdy" type="number" id="cdy" name="cdy"
+                       class="form-control"
+                       placeholder="Tọa độ khung in - Y">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="width">Chiều rộng khung in</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.width" type="number" id="width" name="width"
+                       class="form-control"
+                       placeholder="Chiều rộng khung in">
+            </div>
+            <label class="col-md-3 col-form-label" for="height">Chiều cao khung in</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.height" type="number" id="height" name="height"
+                       class="form-control"
+                       placeholder="Chiều cao khung in">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="curls">Độ cong</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.curls" type="text" id="curls" name="curls"
+                       class="form-control"
+                       placeholder="Độ cong">
+            </div>
+            <label class="col-md-3 col-form-label" for="rotate">Góc xoay</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.rotate" type="number" id="rotate" name="rotate"
+                       class="form-control"
+                       placeholder="Góc xoay">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="pulled_oblique">Độ kéo xiên</label>
+            <div class="col-md-3">
+                <input [(ngModel)]="mockup.pulled_oblique" type="text" id="pulled_oblique"
+                       name="pulled_oblique"
+                       class="form-control"
+                       placeholder="Độ kéo xiên">
+            </div>
+        </div>
     </div>
 </div>

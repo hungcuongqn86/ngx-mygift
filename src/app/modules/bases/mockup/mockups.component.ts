@@ -9,5 +9,6 @@ import {BasesService} from '../bases.service';
 
 export class MockupsComponent {
     constructor(public basesService: BasesService) {
+        console.log(basesService.base.mockup);
     }
 }

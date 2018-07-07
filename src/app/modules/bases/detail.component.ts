@@ -23,24 +23,9 @@ export class DetailComponent implements OnInit {
             this.basesService.getBase(this.basesService.base.id)
                 .subscribe(base => {
                     this.basesService.base = base.data;
-                    if (this.basesService.base.img) {
-                        this.basesService.fileRes.status = true;
-                        this.basesService.fileRes.data.url = decodeURIComponent(this.basesService.base.img);
-                    }
                 });
         } else {
-            this.basesService.base = {
-                id: null, code: null, name: null, price_base: null, price: null
-                , description: null, img: null, status: 0
-                , cdx: 0, cdy: 0, img_height: 0, img_width: 0, height: 0, width: 0, rotate: 0, curls: '', pulled_oblique: ''
-                , colors: ''
-                , delete_f: 0
-            };
-            this.basesService.fileRes = {
-                type: '',
-                name: '', size: 0, progress: 0
-                , data: {url: ''}, message: '', status: false
-            };
+            this.basesService.reset();
         }
     }
 

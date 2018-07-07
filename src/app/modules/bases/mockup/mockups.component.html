@@ -1,4 +1,15 @@
-<app-base-detail-mockups-mockup *ngFor="let item of basesService.base.mockup" [mockup]="item"></app-base-detail-mockups-mockup>
+<div class="card">
+    <div class="card-header">
+        Danh sách mockup
+        <button type="button" (click)="basesService.addMockup()"
+                class="btn btn-sm btn-primary pull-right"><i
+                class="fa fa-plus"></i>
+        </button>
+    </div>
+    <div class="card-body">
+        <app-base-detail-mockups-mockup *ngFor="let item of basesService.base.mockup" [mockup]="item"></app-base-detail-mockups-mockup>
+    </div>
+</div>
 <div class="text-right">
     <button type="button" (click)="basesService.updateBase()"
             class="btn btn-sm btn-primary"><i

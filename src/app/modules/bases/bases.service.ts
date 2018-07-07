@@ -43,17 +43,45 @@ export class BasesService {
     static instance: BasesService;
     private handleError: HandleError;
     public search = {key: '', page_size: 10, page: 1};
-    public base: Base = {
-        id: null, code: null, name: null, price_base: null, price: null
-        , description: null, status: 0
-        , colors: ''
-        , mockup: null
-        , delete_f: 0
-    };
+    public base: Base;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
         this.handleError = httpErrorHandler.createHandleError('BasesService');
+        if (!this.base) {
+            this.reset();
+        }
         return BasesService.instance = BasesService.instance || this;
+    }
+
+    reset() {
+        this.base = {
+            id: null, code: null, name: null, price_base: null, price: null
+            , description: null, status: 0
+            , colors: ''
+            , mockup: []
+            , delete_f: 0
+        };
+    }
+
+    addMockup() {
+        const newMockup: Mockup = {
+            id: null,
+            base_id: this.base.id,
+            index: null,
+            status: null,
+            img: null,
+            cdx: 0,
+            cdy: 0,
+            img_height: 0,
+            img_width: 0,
+            height: 0,
+            width: 0,
+            curls: null,
+            rotate: 0,
+            pulled_oblique: null,
+            delete_f: 0
+        };
+        this.base.mockup.push(newMockup);
     }
 
     getBases(search): Observable<any> {
